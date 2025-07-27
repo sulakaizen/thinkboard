@@ -1,8 +1,12 @@
 import express from "express";
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
+import dotenv from "dotenv";
+
+dotenv.config(); //calling method dotenv helps us to work with environmental variables secret vars
 
 const app = express();
+const PORT = process.env.PORT || 5001
 
 app.use("/api/notes", notesRoutes); // it will hit to notesRoutes
 
@@ -11,6 +15,6 @@ app.use("/api/notes", notesRoutes); // it will hit to notesRoutes
 
 connectDB()
 
-app.listen(5001, () => {
-    console.log("Server started on PORT: 5001");
+app.listen(PORT, () => {
+    console.log("Server started on PORT:", PORT);
 });
